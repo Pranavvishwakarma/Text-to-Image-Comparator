@@ -54,10 +54,8 @@ const GenerateImage = () => {
       try {
         setGeneratingImg(true);
         const startTime1 = new Date();
-      // //   // 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
-      // //   //new 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
-      // //   //purani  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
-        const Api = "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";
+     
+        const Api = import.meta.env.VITE_HUGGINGFACE_API_KEY;
         const response = await fetch("https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5", {
           method: "POST",
           headers: {
@@ -68,13 +66,13 @@ const GenerateImage = () => {
         });
         const blob = await response.blob();
         setImage_url1(URL.createObjectURL(blob));
-        const endTime1 = new Date(); // Record the end time
-        const elapsedTime1 = endTime1 - startTime1; // Calculate the elapsed time in milliseconds
+        const endTime1 = new Date(); 
+        const elapsedTime1 = endTime1 - startTime1; 
        setImageGenerationTime1(elapsedTime1);
        
        const startTime2 = new Date();
-       const API_TOKEN = "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";
-         // Replace with your actual API token
+       const API_TOKEN = import.meta.env.VITE_HUGGINGFACE_API_KEY;
+        
         const response2 = await axios.post(
           "https://api-inference.huggingface.co/models/prompthero/openjourney",
           { inputs:prompt},
@@ -94,33 +92,15 @@ const GenerateImage = () => {
         } else {
           console.error("Failed to generate image");
         }
-        const endTime2 = new Date(); // Record the end time
-        const elapsedTime2 = endTime2 - startTime2; // Calculate the elapsed time in milliseconds
+        const endTime2 = new Date(); 
+        const elapsedTime2 = endTime2 - startTime2; 
        setImageGenerationTime2(elapsedTime2);
       
      
-    //  setGeneratingImg(true);
-      // const startTime3 = new Date();
-      // const thirdApiRequest = {
-      //   method: "POST",
-      //   url: "https://texttoimage.p.rapidapi.com/image",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     // 4f4b3de8bdmsh62a0c9b113d1c7fp15e863jsn11618dfb12b5
-      //     //5288777387msheb5705d130f644ap195a8fjsnbd554477e60b
-      //     "X-RapidAPI-Key": "5288777387msheb5705d130f644ap195a8fjsnbd554477e60b",
-          
-      //     "X-RapidAPI-Host": "texttoimage.p.rapidapi.com",
-      //   },
-      //   data: JSON.stringify({
-      //     search_text: prompt,
-      //     num_images: 1,
-      //     pro_blog: true,
-      //   }),
-      // };
+
    
       const startTime3 = new Date();
-      const Api1 = "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";
+      const Api1 = process.env.REACT_APP_api3;
       const thirdApiRequest  = await fetch("https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-2-1", {
             method: "POST",
             headers: {
@@ -134,18 +114,15 @@ const GenerateImage = () => {
        
 
       
-      const endTime3 = new Date(); // Record the end time
-        const elapsedTime3 = endTime3 - startTime3; // Calculate the elapsed time in milliseconds
+      const endTime3 = new Date();
+        const elapsedTime3 = endTime3 - startTime3; 
        setImageGenerationTime3(elapsedTime3);
     
-// // fourth Dell-e api Bearer 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
+
 
 const startTime4 = new Date();
-const API_KEY_OPENAI = "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"; 
+const API_KEY_OPENAI = process.env.REACT_APP_openai; 
 
-// Replace with your OpenAI API key
-// const API_KEY_OPENAI = "YOUR_API_KEY"; // Replace with your OpenAI API key
-// const prompt = "Your prompt here"; // Replace with your prompt
 
 const fourthApiRequest = 
  {
@@ -174,13 +151,13 @@ const fourthApiRequest =
   catch(error){
     console.error(error)
   }
-const endTime4 = new Date(); // Record the end time
-        const elapsedTime4 = endTime4 - startTime4; // Calculate the elapsed time in milliseconds
+const endTime4 = new Date();
+        const elapsedTime4 = endTime4 - startTime4; 
        setImageGenerationTime4(elapsedTime4);
     }
          
     catch (error) {
-        // alert(error?.response.data.error.message);
+       
         console.log(error);
       } 
 

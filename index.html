@@ -27,19 +27,5 @@
 <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/serviceWorker.js") // Ensure the correct path
-            .then((registration) => {
-              console.log("Service Worker registration successful with scope:", registration.scope);
-            })
-            .catch((err) => {
-              console.log("Service Worker registration failed:", err);
-            });
-        });
-      }
-    </script>
 </body>
 </html>
